@@ -1,9 +1,10 @@
 package movieRecommender;
 
 
-/** Class MovieRatingNode represents a node in the MovieRatingsList.
- *  Do not modify this class.
- *  @author okarpenko */
+/**
+ Class MovieRatingNode represents a node in the MovieRatingsList.
+  */
+
 public class MovieRatingNode {
 
     private int movieId; // id of the movie
@@ -27,14 +28,14 @@ public class MovieRatingNode {
     }
 
     /**
-     * Advance to the next node in the list.
+     * Method that advances to the next node in the list.
      * @return next node
      */
     public MovieRatingNode next() {
         return next;
     }
 
-    /** Point next to the given node
+    /** Method that sets the next node to the given node in the argument
      **
      * @param anotherNode given MovieRatingNode
      */
@@ -42,7 +43,7 @@ public class MovieRatingNode {
         this.next = anotherNode;
     }
 
-    /** Return the id of the movie stored in this node
+    /** Return the movie id stored in this node
      * @return movieId
      */
     public int getMovieId() {
@@ -50,7 +51,7 @@ public class MovieRatingNode {
     }
 
     /**
-     * A getter for the movie rating
+     * Returns the movie rating
      * @return movie rating
      */
     public double getMovieRating() {
@@ -58,16 +59,15 @@ public class MovieRatingNode {
     }
 
     /**
-     * A setter for the movie rating.
-     *  Change the rating to newRating.
-     * @param newRating new rating value for this movie
+     * Method sets a new movie rating for the given node.
+     * @param newRating
      */
     public void setMovieRating(double newRating) {
         movieRating = newRating;
     }
 
     /** Return a string with the movie id and rating
-     * @return string that contains movie info
+     * @return
      */
     public String toString() {
         return movieId + ", " + movieRating;

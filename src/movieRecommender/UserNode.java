@@ -1,20 +1,19 @@
 package movieRecommender;
 
+import javax.swing.text.html.HTMLDocument;
+
 /** UserNode. The class represents a node in the UsersList.
  *  Stores a userId, a list of ratings of type MovieRatingsList,
  *  and a reference to the "next" user in the list.
- *  FILL IN CODE in methods getFavoriteMovies and getLeastFavoriteMovies
- *
- *  Do not modify signatures of methods.
- *  */
+ */
 public class UserNode {
     private int userId;
     private MovieRatingsList movieRatings;
     private UserNode nextUser;
 
     /** A constructor for the UserNode.
-     * @param id 	User id
-     * */
+     * @param id User id
+     */
     public UserNode(int id) {
         userId = id;
         movieRatings = new MovieRatingsList();
@@ -44,24 +43,28 @@ public class UserNode {
 
     /** Print info contained in this node:
      *  userId and a list of ratings.
-     *  Expected format: (userid) movieId:rating; movieId:rating; movieId:rating; */
+     */
     public void print() {
-        System.out.print("(" + userId + ") ");
         movieRatings.print();
-
     }
 
+    /**
+     * Returns the movie ratings list of MovieRatingsNode
+     * @return
+     */
+    public MovieRatingsList getMovieRatings() {
+        return movieRatings;
+    }
 
     /**
      * Add rating info for a given movie to the MovieRatingsList
-     *  for this user node
+     * for this user node
      *
      * @param movieId id of the movie
      * @param rating  rating of the movie
      */
     public void insert(int movieId, double rating) {
         movieRatings.insertByRating(movieId, rating);
-
     }
 
     /**
@@ -72,9 +75,18 @@ public class UserNode {
      * @return array containing movie ids of movies rated as 5 (by this user)
      */
     public int[] getFavoriteMovies(int n) {
-        // FILL IN CODE
 
-        return null; // don't forget to change
+        int[] result = new int[n];
+        int count = 0;
+
+
+        for (MovieRatingNode x: this.movieRatings) {
+            if (x.getMovieRating() == 5.0 && count < n) {
+                result[count] = x.getMovieId();
+                count++;
+            }
+        }
+        return result;
     }
 
     /**
@@ -85,9 +97,17 @@ public class UserNode {
      * @return array of movie ids of movies rated as 1
      */
     public int[] getLeastFavoriteMovies(int n) {
-        // FILL IN CODE
 
-        return null; // don't forget to change
+        int[] result = new int[n];
+        int count = 0;
+
+        for (MovieRatingNode x: this.movieRatings.getNWorstRankedMovies(n)) {
+            if (x.getMovieRating() == 1.0 && count < n) {
+                result[count] = x.getMovieId();
+                count++;
+            }
+        }
+        return result;
     }
 
     /**
@@ -99,7 +119,7 @@ public class UserNode {
      * @return similarity score
      */
     public double computeSimilarity(UserNode otherUser) {
-        return movieRatings.computeSimilarity(otherUser.movieRatings);
+        double result = this.movieRatings.computeSimilarity(otherUser.movieRatings);
+        return result;
     }
-
 }
