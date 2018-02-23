@@ -8,7 +8,8 @@ public class Driver {
     public static void main(String[] args) {
 
         MovieRecommender recommender = new MovieRecommender();
-        UserNode un = new UserNode(1);
+
+//        UserNode un = new UserNode(1);
 //        UserNode u1 = new UserNode(2);
 //        UsersList ul = new UsersList();
 
@@ -28,31 +29,28 @@ public class Driver {
 //        ul.findMostSimilarUser(1);
 //        System.out.println(ul.findMostSimilarUser(1));
 
-        un.insert(1, 1.0);
-        un.insert(6, 1.0);
-        un.insert(3, 5.0);
-        un.insert(4, 5.0);
-        un.print();
+//        un.insert(1, 1.0);
+//        un.insert(6, 1.0);
+//        un.insert(3, 5.0);
+//        un.insert(4, 5.0);
+//        un.print();
 
-        int[] array = un.getFavoriteMovies(2);
-        int[] array1 = un.getLeastFavoriteMovies(2);
+//        int[] array = un.getFavoriteMovies(2);
+//        int[] array1 = un.getLeastFavoriteMovies(2);
 
-        for (int i = 0; i < array1.length; i ++) {
-            System.out.println("end: " + array1[i]);
-        }
+//        for (int i = 0; i < array1.length; i ++) {
+//            System.out.println("end: " + array1[i]);
+//        }
+//
+//        for (int i = 0; i < array.length; i++) {
+//            System.out.println("Here: " + array[i]);
+//        }
 
-        for (int i = 0; i < array.length; i++) {
-            System.out.println("Here: " + array[i]);
-        }
-//          un.getLeastFavoriteMovies(2);
+        recommender.loadData("movies.csv","ratings.csv");
 
-        // movies.csv and ratings.csv should be in the project folder
-
-//        recommender.loadData("movies.csv","ratings.csv");
-
-//        recommender.findRecommendations(3, 15, "recommendations");
-//        System.out.println();
-//        recommender.findAntiRecommendations(3, 15, "antiRecommendations");
+        recommender.findRecommendations(3, 15, "recommendations");
+        System.out.println();
+        recommender.findAntiRecommendations(3, 15, "antiRecommendations");
 
     }
 }
